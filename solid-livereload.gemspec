@@ -1,11 +1,11 @@
-require_relative "lib/hotwire/livereload/version"
+require_relative "lib/solid/livereload/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "hotwire-livereload"
-  spec.version = Hotwire::Livereload::VERSION
+  spec.name = "solid-livereload"
+  spec.version = Solid::Livereload::VERSION
   spec.authors = ["Kirill Platonov"]
   spec.email = ["mail@kirillplatonov.com"]
-  spec.homepage = "https://github.com/kirillplatonov/hotwire-livereload"
+  spec.homepage = "https://github.com/vinibispo/solid-livereload"
   spec.summary = "Automatically reload Hotwire Turbo when app files are modified."
   spec.license = "MIT"
 

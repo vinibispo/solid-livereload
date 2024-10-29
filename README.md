@@ -1,6 +1,6 @@
-# Hotwire::Livereload
+# Solid::Livereload
 
-Automatically reload Hotwire Turbo when app files are modified.
+Automatically reload Solid Turbo when app files are modified.
 
 https://user-images.githubusercontent.com/839922/148676469-0acfa036-832e-4b40-aa05-1fdd945baa1f.mp4
 
@@ -10,9 +10,9 @@ https://user-images.githubusercontent.com/839922/148676469-0acfa036-832e-4b40-aa
 
 ## Getting started
 
-Add `hotwire-livereload` to your Gemfile:
+Add `solid-livereload` to your Gemfile:
 ```
-bundle add hotwire-livereload --group development
+bundle add solid-livereload --group development
 ```
 
 Run installer:
@@ -48,7 +48,7 @@ You can watch for changes in additional folders by adding them to `listen_paths`
 
 Rails.application.configure do
   # ...
-  config.hotwire_livereload.listen_paths << Rails.root.join("app/custom_folder")
+  config.solid_livereload.listen_paths << Rails.root.join("app/custom_folder")
 end
 ```
 
@@ -58,7 +58,7 @@ You can skip one or few default listen paths:
 
 Rails.application.configure do
   # ...
-  config.hotwire_livereload.skip_listen_paths << Rails.root.join("app/views")
+  config.solid_livereload.skip_listen_paths << Rails.root.join("app/views")
 end
 ```
 
@@ -68,8 +68,8 @@ You can disable default listen paths and fully override them:
 
 Rails.application.configure do
   # ...
-  config.hotwire_livereload.disable_default_listeners = true
-  config.hotwire_livereload.listen_paths = [
+  config.solid_livereload.disable_default_listeners = true
+  config.solid_livereload.listen_paths = [
     Rails.root.join("app/assets/stylesheets"),
     Rails.root.join("app/javascript")
   ]
@@ -84,8 +84,8 @@ If you don't have `data-turbo-track="reload"` attribute on your JS and CSS bundl
 
 Rails.application.configure do
   # ...
-  config.hotwire_livereload.force_reload_paths << Rails.root.join("app/assets/stylesheets")
-  config.hotwire_livereload.force_reload_paths << Rails.root.join("app/javascript")
+  config.solid_livereload.force_reload_paths << Rails.root.join("app/assets/stylesheets")
+  config.solid_livereload.force_reload_paths << Rails.root.join("app/javascript")
 end
 ```
 
@@ -97,17 +97,17 @@ Instead of a direct ActionCable websocket connection, you can reuse the existing
 
 Rails.application.configure do
   # ...
-  config.hotwire_livereload.reload_method = :turbo_stream
+  config.solid_livereload.reload_method = :turbo_stream
 end
 ```
 
-In that case you need to place `hotwire_livereload_tags` helper in your layout *after* the `<%= action_cable_meta_tag %>`.
+In that case you need to place `solid_livereload_tags` helper in your layout *after* the `<%= action_cable_meta_tag %>`.
 
 ```diff
 <head>
   ...
   <%= action_cable_meta_tag %>
-+ <%= hotwire_livereload_tags if Rails.env.development? %>
++ <%= solid_livereload_tags if Rails.env.development? %>
   ...
 </head>
 ```
@@ -124,7 +124,7 @@ You may use listen_options to pass these options like:
 
 Rails.application.configure do
   # ...
-  config.hotwire_livereload.listen_options[:force_polling] = true
+  config.solid_livereload.listen_options[:force_polling] = true
 end
 ```
 
@@ -139,7 +139,7 @@ To avoid this, you can add a debounce delay to the file watcher:
 
 Rails.application.configure do
   # ...
-  config.hotwire_livereload.debounce_delay_ms = 300 # in milliseconds
+  config.solid_livereload.debounce_delay_ms = 300 # in milliseconds
 end
 ```
 
@@ -166,4 +166,4 @@ To get started:
 
 ## License
 
-Hotwire::Livereload is released under the [MIT License](https://opensource.org/licenses/MIT).
+Solid::Livereload is released under the [MIT License](https://opensource.org/licenses/MIT).

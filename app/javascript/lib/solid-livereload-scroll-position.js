@@ -1,4 +1,4 @@
-const KEY = "hotwire-livereload-scrollPosition"
+const KEY = "solid-livereload-scrollPosition"
 
 export function read() {
   const value = localStorage.getItem(KEY)
@@ -18,7 +18,7 @@ export function remove() {
 export function restore() {
   const value = read()
   if (value) {
-    console.log("[Hotwire::Livereload] Restoring scroll position to", value)
+    console.log("[Solid::Livereload] Restoring scroll position to", value)
     window.scrollTo(0, value)
   }
 

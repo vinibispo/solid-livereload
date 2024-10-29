@@ -658,14 +658,14 @@
     }
   });
 
-  // app/javascript/hotwire-livereload.js
+  // app/javascript/solid-livereload.js
   var import_actioncable = __toESM(require_action_cable());
 
-  // app/javascript/lib/hotwire-livereload-received.js
+  // app/javascript/lib/solid-livereload-received.js
   var import_debounce = __toESM(require_debounce());
 
-  // app/javascript/lib/hotwire-livereload-scroll-position.js
-  var KEY = "hotwire-livereload-scrollPosition";
+  // app/javascript/lib/solid-livereload-scroll-position.js
+  var KEY = "solid-livereload-scrollPosition";
   function read() {
     const value = localStorage.getItem(KEY);
     if (!value)
@@ -682,42 +682,42 @@
   function restore() {
     const value = read();
     if (value) {
-      console.log("[Hotwire::Livereload] Restoring scroll position to", value);
+      console.log("[Solid::Livereload] Restoring scroll position to", value);
       window.scrollTo(0, value);
     }
   }
-  var hotwire_livereload_scroll_position_default = { read, save, restore, remove };
+  var solid_livereload_scroll_position_default = { read, save, restore, remove };
 
-  // app/javascript/lib/hotwire-livereload-received.js
-  var hotwire_livereload_received_default = (0, import_debounce.default)(({ force_reload }) => {
+  // app/javascript/lib/solid-livereload-received.js
+  var solid_livereload_received_default = (0, import_debounce.default)(({ force_reload }) => {
     const onErrorPage = document.title === "Action Controller: Exception caught";
     if (onErrorPage || force_reload) {
-      console.log("[Hotwire::Livereload] Files changed. Force reloading..");
+      console.log("[Solid::Livereload] Files changed. Force reloading..");
       document.location.reload();
     } else {
-      console.log("[Hotwire::Livereload] Files changed. Reloading..");
-      hotwire_livereload_scroll_position_default.save();
+      console.log("[Solid::Livereload] Files changed. Reloading..");
+      solid_livereload_scroll_position_default.save();
       Turbo.cache.clear();
       Turbo.visit(window.location.href, { action: "replace" });
     }
   }, 300);
 
-  // app/javascript/hotwire-livereload.js
+  // app/javascript/solid-livereload.js
   var consumer = (0, import_actioncable.createConsumer)();
   var subscription = null;
-  var createSubscription = () => consumer.subscriptions.create("Hotwire::Livereload::ReloadChannel", {
-    received: hotwire_livereload_received_default,
+  var createSubscription = () => consumer.subscriptions.create("Solid::Livereload::ReloadChannel", {
+    received: solid_livereload_received_default,
     connected() {
-      console.log("[Hotwire::Livereload] Websocket connected");
+      console.log("[Solid::Livereload] Websocket connected");
     },
     disconnected() {
-      console.log("[Hotwire::Livereload] Websocket disconnected");
+      console.log("[Solid::Livereload] Websocket disconnected");
     }
   });
   subscription = createSubscription();
   document.addEventListener("turbo:load", () => {
-    hotwire_livereload_scroll_position_default.restore();
-    hotwire_livereload_scroll_position_default.remove();
+    solid_livereload_scroll_position_default.restore();
+    solid_livereload_scroll_position_default.remove();
     if (subscription) {
       consumer.subscriptions.remove(subscription);
       subscription = null;

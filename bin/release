@@ -6,14 +6,14 @@ if [ -z $1 ] ; then
   echo "Please provide version number: bin/release 1.0.0" && exit 1;
 fi
 
-printf "module Hotwire\n  module Livereload\n    VERSION = \"$VERSION\"\n  end\nend\n" > ./lib/hotwire/livereload/version.rb
+printf "module Solid\n  module Livereload\n    VERSION = \"$VERSION\"\n  end\nend\n" > ./lib/solid/livereload/version.rb
 bundle
 npm install
 npm run build
-git add Gemfile.lock lib/hotwire/livereload/version.rb app/assets/javascripts/hotwire-livereload.js app/assets/javascripts/hotwire-livereload-turbo-stream.js
+git add Gemfile.lock lib/solid/livereload/version.rb app/assets/javascripts/solid-livereload.js app/assets/javascripts/solid-livereload-turbo-stream.js
 git commit -m "Bump version for $VERSION"
 git push
 git tag v$VERSION
 git push --tags
-gem build hotwire-livereload.gemspec
-gem push "hotwire-livereload-$VERSION.gem"
+gem build solid-livereload.gemspec
+gem push "solid-livereload-$VERSION.gem"
