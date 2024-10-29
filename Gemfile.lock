@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    solid-livereload (1.4.1)
+    solid-livereload (0.0.1)
       actioncable (>= 6.0.0)
       listen (>= 3.0.0)
       railties (>= 6.0.0)
