@@ -1,5 +1,5 @@
 {
-  "name": "hotwire-livereload",
+  "name": "solid-livereload",
   "private": "true",
   "scripts": {
     "build": "esbuild app/javascript/*.js --outdir=app/assets/javascripts/ --bundle",

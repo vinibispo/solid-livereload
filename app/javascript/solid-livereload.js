@@ -1,19 +1,19 @@
 import { createConsumer } from "@rails/actioncable"
-import received from "./lib/hotwire-livereload-received"
-import scrollPosition from "./lib/hotwire-livereload-scroll-position"
+import received from "./lib/solid-livereload-received"
+import scrollPosition from "./lib/solid-livereload-scroll-position"
 
 const consumer = createConsumer()
 let subscription = null
 
-const createSubscription = () => consumer.subscriptions.create("Hotwire::Livereload::ReloadChannel", {
+const createSubscription = () => consumer.subscriptions.create("Solid::Livereload::ReloadChannel", {
   received,
 
   connected() {
-    console.log("[Hotwire::Livereload] Websocket connected")
+    console.log("[Solid::Livereload] Websocket connected")
   },
 
   disconnected() {
-    console.log("[Hotwire::Livereload] Websocket disconnected")
+    console.log("[Solid::Livereload] Websocket disconnected")
   },
 })
 

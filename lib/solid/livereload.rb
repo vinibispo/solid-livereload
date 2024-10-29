@@ -1,6 +1,6 @@
-require "hotwire/livereload/engine"
+require "solid/livereload/engine"
 
-module Hotwire
+module Solid
   module Livereload
     DISABLE_FILE = "tmp/livereload-disabled.txt"
   end
