@@ -24,7 +24,15 @@ if CABLE_CONFIG_PATH.exist?
   end
 
   say "Switch development cable to use solid_cable"
-  gsub_file CABLE_CONFIG_PATH.to_s, /development:\n\s+adapter: async/, "development:\n\s+adapter: solid_cable\n\s+connects_to:\n\s+database:\n\s+writing: cable"
+
+  content = <<~YAML
+    development:
+      adapter: solid_cable
+      connects_to:
+        database:
+          writing: cable
+  YAML
+  gsub_file CABLE_CONFIG_PATH, /development:\n  adapter: async\n/, content
 else
   say 'ActionCable config file (config/cable.yml) is missing. Uncomment "gem \'solid_cable\'" in your Gemfile and create config/cable.yml to use Solid Livereload.'
 end
